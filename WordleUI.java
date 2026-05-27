@@ -20,7 +20,11 @@ public class WordleUI extends Application {
     @Override
     public void start(Stage primaryStage) {
         // Declaration of the frame and the answer word.
-        answerWord="funds"; // answerWord has a word
+
+        String[] words = {“shard”, “slate”, “crane”, “lucky”, “learn”, “court”, “snack”, “crate”, “plant”, “train”, “beach”, “goofy”, “eager”, “earth”, “inbox”, “fizzy”, “paver”, “smite”, “gnome”, “wench”, “crazy”, “crypt”, “gypsy”, “igloo”, “slang”, “sahur”, “wrong”, “onion”, “young”, “drunk”, “funky”, “aptly”, “hence”, “voice”, “trust”, “fiery”, “oxide”, “robin”, “surge”, “below”, “couch”, “agree”, “truck”, “steer”, “round”, “taboo”, “daisy”, “fiber”,“zesty”, “clown”, “boing”, “quack”,“bloop”, “squid”, “jazzy”, “mango”, “bacon”, “spork”, “toots”, “fluff”, “moose”, “goose”,“quirk”, “wacky”, “ninja”, “banjo”, “buzzy”, “jumpy”, “girth”, “dizzy”, “swoop”, “bling”,“doink”, “snort”, “floop”, “gravy”,“munch”, “zoink”, “scoff”, “derpy”, “cluck”, “woozy”, “toast”, “prank”, “chonk”, “smirk”, “vroom”, “rhyme”, “yacht”, “stoic”, “elude”, “vodka”, “cacao”, “llama”, “nymph”, “pixel”, “queue”};
+        int random = (int) (Math.random() * words.length);
+        
+        answerWord = words[random]; // answerWord has a word
         VBox root = new VBox(34); // vertical box with 34 px spacing.
         root.setAlignment(Pos.CENTER); // center frame
         root.setStyle("-fx-background-color: #121212; -fx-padding: 20px;"); // set color and padding amount in pixels.
