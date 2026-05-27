@@ -7,7 +7,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import java.util.Scanner;
 
 public class WordleUI extends Application {
 
@@ -52,7 +51,5 @@ public class WordleUI extends Application {
 
     public static void main(String[] args) {
         launch(args);
-        Scanner input = new Scanner(System.in);
-
     }
 }
