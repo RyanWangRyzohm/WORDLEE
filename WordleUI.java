@@ -90,8 +90,15 @@ public class WordleUI extends Application {
         primaryStage.show();
     }
     public static void lockGuess(Label[][] guessor, int row){
-        // Only check if the user has typed all 5 letters
+        // Precondition: Only check if the user has typed all 5 letters
 
+        String[] guess = new String[5];
+        boolean[] matches = new boolean[5]; // tracks which ones are matched
+
+        for (int i = 0; i<5; i++)
+            {
+                guess[i] = guessor[row][i].getText();
+            }
 
         String target = answerWord.toUpperCase(); // Ensure case matches code.toString()
         int greens=0;
@@ -104,15 +111,27 @@ public class WordleUI extends Application {
                 tile.setStyle("-fx-background-color: #538d4e; -fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;");
                 greens++;
             }
-            // 2. Partial Match (Yellow)
-            else if (target.contains(letter)) {
-                tile.setStyle("-fx-background-color: #b59f3b; -fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;");
-            }
-            // 3. No Match (Grey)
-            else {
-                tile.setStyle("-fx-background-color: #3a3a3c; -fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;");
-            }
         }
+        // Find yellows and greys
+        for (int i = 0; i < 5; i++)
+            {
+                Label tile = guessor[row][i];
+                String letter = tile.getText();
+                
+                if (letter.equals(String.valueOf(target.charAt(i))))
+                {
+                    continue; //skips if already green
+                }    
+                
+                // 2. Partial Match (Yellow)
+                if (target.contains(letter)) {
+                    tile.setStyle("-fx-background-color: #b59f3b; -fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;");
+                }
+                // 3. No Match (Grey)
+                else {
+                    tile.setStyle("-fx-background-color: #3a3a3c; -fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;");
+                }
+            }
         if(greens==5){
             Label win = new Label("God Joob");
             win.setPrefSize(100, 50);
