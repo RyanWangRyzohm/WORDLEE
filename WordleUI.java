@@ -12,20 +12,20 @@ import javafx.stage.Stage;
 public class WordleUI extends Application {
 
     // Track where the user is currently typing
-    private static int currentRow = 0;
-    private static int currentCol = 0;
-    private static String answerWord;
-    private Label[][] boardTiles = new Label[6][5]; // Store tiles to update them later
+    private static int currentRow = 0; // instance variable that tracks the current row typing.
+    private static int currentCol = 0; // instance variable that tracks where the typed letter is within the row.
+    private static String answerWord; // the word that is the answer.
+    private Label[][] boardTiles = new Label[6][5]; // Store blank tile 2d array to update them later.
 
     @Override
     public void start(Stage primaryStage) {
-        //
-        answerWord="funds";
-        VBox root = new VBox(34); //
-        root.setAlignment(Pos.CENTER);
-        root.setStyle("-fx-background-color: #121212; -fx-padding: 20px;");
-
-        Label title = new Label("WORDLE");
+        // Declaration of the frame and the answer word.
+        answerWord="funds"; // answerWord has a word
+        VBox root = new VBox(34); // vertical box with 34 px spacing.
+        root.setAlignment(Pos.CENTER); // center frame
+        root.setStyle("-fx-background-color: #121212; -fx-padding: 20px;"); // set color and padding amount in pixels.
+        // Add and format the label (initialize label, set its font and set the color and bolding).
+        Label title = new Label("WORDY");
         title.setFont(Font.font("System", 30));
         title.setStyle("-fx-text-fill: white; -fx-font-weight: bold;");
 
