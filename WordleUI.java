@@ -164,14 +164,27 @@ public class WordleUI extends Application {
 
         
         if(greens==5){
-            Label win = new Label("God Joob");
-            win.setPrefSize(100, 50);
-            win.setStyle("-fx-background-color: #818384; -fx-text-fill: white; -fx-font-weight: bold;");
+            showPopup("God Joob");
         }
 
         // Move to the next row and reset column for the next guess
         currentRow++;
         currentCol = 0;
+    }
+    public static void showPopup(String message)
+    {
+        Label popupLabel = new Label(message);
+        popupLabel.setStyle("-fx-background-color: #3a3a3c; -fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;-fx-padding: 20px;"); 
+        Stage popup = new Stage();
+
+        VBox layout = new VBox(popupLabel);
+        layout.setAllignment(Pos.CENTER);
+        layout.setStyle("-fx-background-color: #121212; -fx-padding: 20px;");
+
+        Scene popupScene = new Scene(layout, 300, 150);
+
+        popup.setScene(popupScene);
+        popup.show();
     }
     public static void main(String[] args) {
         launch(args);
