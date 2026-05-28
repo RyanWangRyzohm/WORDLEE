@@ -21,7 +21,7 @@ public class WordleUI extends Application {
     public void start(Stage primaryStage) {
         // Declaration of the frame and the answer word.
 
-        String[] words = {“shard”, “slate”, “crane”, “lucky”, “learn”, “court”, “snack”, “crate”, “plant”, “train”, “beach”, “goofy”, “eager”, “earth”, “inbox”, “fizzy”, “paver”, “smite”, “gnome”, “wench”, “crazy”, “crypt”, “gypsy”, “igloo”, “slang”, “sahur”, “wrong”, “onion”, “young”, “drunk”, “funky”, “aptly”, “hence”, “voice”, “trust”, “fiery”, “oxide”, “robin”, “surge”, “below”, “couch”, “agree”, “truck”, “steer”, “round”, “taboo”, “daisy”, “fiber”,“zesty”, “clown”, “boing”, “quack”,“bloop”, “squid”, “jazzy”, “mango”, “bacon”, “spork”, “toots”, “fluff”, “moose”, “goose”,“quirk”, “wacky”, “ninja”, “banjo”, “buzzy”, “jumpy”, “girth”, “dizzy”, “swoop”, “bling”,“doink”, “snort”, “floop”, “gravy”,“munch”, “zoink”, “scoff”, “derpy”, “cluck”, “woozy”, “toast”, “prank”, “chonk”, “smirk”, “vroom”, “rhyme”, “yacht”, “stoic”, “elude”, “vodka”, “cacao”, “llama”, “nymph”, “pixel”, “queue”, "hotel"};
+        String[] words = {"shard", "slate", "crane", "lucky", "learn", "court", "snack", "crate", "plant", "train", "beach", "goofy", "eager", "earth", "inbox", "fizzy", "paver", "smite", "gnome", "wench", "crazy", "crypt", "gypsy", "igloo", "slang", "sahur", "wrong", "onion", "young", "drunk", "funky", "aptly", "hence", "voice", "trust", "fiery", "oxide", "robin", "surge", "below", "couch", "agree", "truck", "steer", "round", "taboo", "daisy", "fiber", "zesty", "clown", "boing", "quack", "bloop", "squid", "jazzy", "mango", "bacon", "spork", "toots", "fluff", "moose", "goose", "quirk", "wacky", "ninja", "banjo", "buzzy", "jumpy", "girth", "dizzy", "swoop", "bling", "doink", "snort", "floop", "gravy", "munch", "zoink", "scoff", "derpy", "cluck", "woozy", "toast", "prank", "chonk", "smirk", "vroom", "rhyme", "yacht", "stoic", "elude", "vodka", "cacao", "llama", "nymph", "pixel", "queue", "hotel"};
         int random = (int) (Math.random() * words.length);
         
         answerWord = words[random]; // answerWord has a word
@@ -82,7 +82,7 @@ public class WordleUI extends Application {
             {
                 if (currentCol < 5)
                 {
-                    System.out.println("Word too short");
+                    showPopup("Word too short");
                 }
                 else
                 {
@@ -93,7 +93,7 @@ public class WordleUI extends Application {
         enterBtn.setOnAction(event -> {
             // Call your method to check the guess here
             if (currentCol < 5) {
-                System.out.println("Not Enough Letters");
+                showPopup("Not Enough Letters");
             }
             else {
                 lockGuess(boardTiles, currentRow);
