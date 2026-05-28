@@ -6,7 +6,9 @@ A lightweight desktop-based Wordle built using JavaFX, but with a twist.
 Players must guess a five-letter word within six attempts, with feedback on each guess.
 
 🟩 Green: Correct letter, correct spot.
+
 🟨 Yellow: Correct letter, wrong spot.
+
 ⬛ Grey: Letter not in the word.
 
 Future Improvements:
