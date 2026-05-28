@@ -91,7 +91,7 @@ public class WordleUI extends Application {
             }
         });
         enterBtn.setOnAction(event -> {
-            // Call your method to check the guess here
+            // Call method to check the guess here
             if (currentCol < 5) {
                 showPopup("Not Enough Letters");
             }
@@ -178,7 +178,7 @@ public class WordleUI extends Application {
         Stage popup = new Stage();
 
         VBox layout = new VBox(popupLabel);
-        layout.setAllignment(Pos.CENTER);
+        layout.setAlignment(Pos.CENTER);
         layout.setStyle("-fx-background-color: #121212; -fx-padding: 20px;");
 
         Scene popupScene = new Scene(layout, 300, 150);
