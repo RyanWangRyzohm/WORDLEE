@@ -8,6 +8,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.animation.PauseTransition;
+import javafx.util.Duration;
 
 public class WordleUI extends Application {
 
@@ -185,6 +187,11 @@ public class WordleUI extends Application {
 
         popup.setScene(popupScene);
         popup.show();
+
+        //make the popup automatically close after 1.5 seconds
+        PauseTransition timer = new PauseTransition(Duration.seconds(1.5));
+        timer.setOnFinished(event -> popup.close());
+        timer.play();
     }
     public static void main(String[] args) {
         launch(args);
