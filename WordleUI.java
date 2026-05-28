@@ -60,6 +60,11 @@ public class WordleUI extends Application {
 
         // --- KEYBOARD LISTENER ---
         scene.setOnKeyPressed(event -> {
+            if (currentRow >= 6)
+            {
+                return; // added to prevent crashing
+            }
+            
             KeyCode code = event.getCode();
 
             // Handle Backspace
@@ -73,13 +78,22 @@ public class WordleUI extends Application {
                 boardTiles[currentRow][currentCol].setText(letter);
                 currentCol++;
             }
-            // Note: You can add Enter key logic here (code == KeyCode.ENTER)
+            else if (code == KeyCode.ENTER)
+            {
+                if (currentCol < 5)
+                {
+                    System.out.println("Word too short");
+                }
+                else
+                {
+                    lockGuess(boardTiles, currentRow);
+                }
+            }
         });
         enterBtn.setOnAction(event -> {
             // Call your method to check the guess here
             if (currentCol < 5) {
-                System.out.println("Word too short!");
-
+                System.out.println("Not Enough Letters");
             }
             else {
                 lockGuess(boardTiles, currentRow);
@@ -93,7 +107,7 @@ public class WordleUI extends Application {
         // Precondition: Only check if the user has typed all 5 letters
 
         String[] guess = new String[5];
-        boolean[] matches = new boolean[5]; // tracks which ones are matched
+        boolean[] matched = new boolean[5]; // tracks which ones are matched. Starts with all as false.
 
         for (int i = 0; i<5; i++)
             {
@@ -102,14 +116,16 @@ public class WordleUI extends Application {
 
         String target = answerWord.toUpperCase(); // Ensure case matches code.toString()
         int greens=0;
+
+        
         for (int i = 0; i < 5; i++) {
             Label tile = guessor[row][i];
-            String letter = tile.getText();
 
             // 1. Exact Match (Green)
-            if (letter.equals(String.valueOf(target.charAt(i)))) {
+            if (guess[i].equals(String.valueOf(target.charAt(i)))) {
                 tile.setStyle("-fx-background-color: #538d4e; -fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;");
                 greens++;
+                matched[i] = true;
             }
         }
         // Find yellows and greys
@@ -117,6 +133,7 @@ public class WordleUI extends Application {
             {
                 Label tile = guessor[row][i];
                 String letter = tile.getText();
+                boolean foundYellow = false;
                 
                 if (letter.equals(String.valueOf(target.charAt(i))))
                 {
@@ -124,14 +141,28 @@ public class WordleUI extends Application {
                 }    
                 
                 // 2. Partial Match (Yellow)
-                if (target.contains(letter)) {
-                    tile.setStyle("-fx-background-color: #b59f3b; -fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;");
+                for (int j = 0; j < 5; j++)
+                {
+                    if (!matched[j] && guess[i].equals(String.valueOf(target.charAt(j))))
+                    {
+                        matched [j] = true;
+                        foundYellow = true;
+                        break;
+                    }
                 }
-                // 3. No Match (Grey)
-                else {
-                    tile.setStyle("-fx-background-color: #3a3a3c; -fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;");
+
+                if (foundYellow)
+                {
+                    tile.setStyle("-fx-background-color: #b59f3b; -fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;"); // yellow
+                }
+                else
+                {
+                    tile.setStyle("-fx-background-color: #3a3a3c; -fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;"); // grey
                 }
             }
+
+
+        
         if(greens==5){
             Label win = new Label("God Joob");
             win.setPrefSize(100, 50);
