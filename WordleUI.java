@@ -67,10 +67,6 @@ public class WordleUI extends Application {
         scene.setOnKeyPressed(event -> {
             if (currentRow >= 6)
             {
-                if(greens!=5)
-                {
-                    showPopup("Sorry, out of guesses, the word is: "+answerWord);
-                }
                 return; // added to prevent crashing
             }
             
@@ -178,6 +174,9 @@ public class WordleUI extends Application {
         if(greens==5)
         {
             showPopup("Good Job");
+        }
+        else if (row == 5) {
+        showPopup("Sorry, out of guesses. The word was: " + answerWord);
         }
 
         // Move to the next row and reset column for the next guess
