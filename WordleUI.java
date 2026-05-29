@@ -31,14 +31,14 @@ public class WordleUI extends Application {
         root.setAlignment(Pos.CENTER); // center frame
         root.setStyle("-fx-background-color: #121212; -fx-padding: 20px;"); // set color and padding amount in pixels.
         // Add and format the label (initialize label, set its font and set the color and bolding).
-        Label title = new Label("WORDY");
-        title.setFont(Font.font("System", 30));
-        title.setStyle("-fx-text-fill: white; -fx-font-weight: bold;");
+        Label title = new Label("WORDY"); // set the title of the program
+        title.setFont(Font.font("System", 30)); // set the title font to System size 30
+        title.setStyle("-fx-text-fill: white; -fx-font-weight: bold;"); // set the title style to white and bold
 
-        GridPane grid = new GridPane();
-        grid.setAlignment(Pos.CENTER);
-        grid.setHgap(8);
-        grid.setVgap(8);
+        GridPane grid = new GridPane(); // creates new grid object
+        grid.setAlignment(Pos.CENTER); // centers the grid object
+        grid.setHgap(8); // sets the horizontal gap/interval to 8
+        grid.setVgap(8); // sets the vertical gap/interval to 8
 
         for (int row = 0; row < 6; row++) {
             for (int col = 0; col < 5; col++) {
