@@ -66,10 +66,14 @@ public class WordleUI extends Application {
         scene.setOnKeyPressed(event -> {
             if (currentRow >= 6)
             {
+                if(greens!=5)
+                {
+                    showPopup("Sorry, out of guesses, the word is: "+answerWord);
+                }
                 return; // added to prevent crashing
             }
             
-            KeyCode code = event.getCode();
+            KeyCode code = event.getCode(); // get the current key press and the letter
 
             // Handle Backspace/removal of letters
             if (code == KeyCode.BACK_SPACE && currentCol > 0) {
