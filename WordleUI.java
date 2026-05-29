@@ -196,7 +196,7 @@ public class WordleUI extends Application {
         layout.setAlignment(Pos.CENTER);
         layout.setStyle("-fx-background-color: #121212; -fx-padding: 20px;");
 
-        Scene popupScene = new Scene(layout, 300, 150);
+        Scene popupScene = new Scene(layout, 500, 150); // previously too narrow
 
         popup.setScene(popupScene);
         popup.show();
