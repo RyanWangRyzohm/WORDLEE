@@ -18,6 +18,7 @@ public class WordleUI extends Application {
     private static int currentCol = 0; // instance variable that tracks where the typed letter is within the row.
     private static String answerWord; // the word that is the answer.
     private Label[][] boardTiles = new Label[6][5]; // Store blank tile 2d array to update them later.
+    private static int greens = 0;
 
     @Override
     public void start(Stage primaryStage) {
@@ -126,7 +127,7 @@ public class WordleUI extends Application {
             }
 
         String target = answerWord.toUpperCase(); // Ensure case matches code.toString()
-        int greens=0;
+        greens=0;
 
         
         for (int i = 0; i < 5; i++) {
