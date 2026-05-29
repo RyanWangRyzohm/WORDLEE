@@ -22,11 +22,11 @@ public class WordleUI extends Application {
     @Override
     public void start(Stage primaryStage) {
         // Declaration of the frame and the answer word.
-
+        // Used AI to generate a few of the words
         String[] words = {"shard", "slate", "crane", "lucky", "learn", "court", "snack", "crate", "plant", "train", "beach", "goofy", "eager", "earth", "inbox", "fizzy", "paver", "smite", "gnome", "wench", "crazy", "crypt", "gypsy", "igloo", "slang", "sahur", "wrong", "onion", "young", "drunk", "funky", "aptly", "hence", "voice", "trust", "fiery", "oxide", "robin", "surge", "below", "couch", "agree", "truck", "steer", "round", "taboo", "daisy", "fiber", "zesty", "clown", "boing", "quack", "bloop", "squid", "jazzy", "mango", "bacon", "spork", "toots", "fluff", "moose", "goose", "quirk", "wacky", "ninja", "banjo", "buzzy", "jumpy", "girth", "dizzy", "swoop", "bling", "doink", "snort", "floop", "gravy", "munch", "zoink", "scoff", "derpy", "cluck", "woozy", "toast", "prank", "chonk", "smirk", "vroom", "rhyme", "yacht", "stoic", "elude", "vodka", "cacao", "llama", "nymph", "pixel", "queue", "hotel"};
         int random = (int) (Math.random() * words.length);
         
-        answerWord = words[random]; // answerWord has a word
+        answerWord = words[random];
         VBox root = new VBox(34); // vertical box with 34 px spacing.
         root.setAlignment(Pos.CENTER); // center frame
         root.setStyle("-fx-background-color: #121212; -fx-padding: 20px;"); // set color and padding amount in pixels.
@@ -39,6 +39,7 @@ public class WordleUI extends Application {
         grid.setAlignment(Pos.CENTER); // centers the grid object
         grid.setHgap(8); // sets the horizontal gap/interval to 8
         grid.setVgap(8); // sets the vertical gap/interval to 8
+        
         // creates all the tiles using a 2d array style nested for loop
         for (int row = 0; row < 6; row++) {
             for (int col = 0; col < 5; col++) {
@@ -75,7 +76,7 @@ public class WordleUI extends Application {
                 currentCol--;
                 boardTiles[currentRow][currentCol].setText("");
             }
-            // Handle Letters (A-Z) and ensure the code don't go out of bounds
+            // Handle Letters (A-Z) and ensure the code doesn't go out of bounds
             else if (code.isLetterKey() && currentCol < 5 && currentRow < 6) {
                 String letter = code.toString(); // code.toString() always returns the uppercase letter
                 boardTiles[currentRow][currentCol].setText(letter);
@@ -110,6 +111,7 @@ public class WordleUI extends Application {
     }
     public static void lockGuess(Label[][] guessor, int row){
         // Precondition: Only check if the user has typed all 5 letters
+        // Locks the guess in place and moves to the next row 
 
         String[] guess = new String[5];
         boolean[] matched = new boolean[5]; // tracks which ones are matched. Starts with all as false.
@@ -168,7 +170,8 @@ public class WordleUI extends Application {
 
 
         
-        if(greens==5){
+        if(greens==5)
+        {
             showPopup("Good Job");
         }
 
@@ -176,7 +179,9 @@ public class WordleUI extends Application {
         currentRow++;
         currentCol = 0;
     }
+    
     public static void showPopup(String message)
+    // This method makes a pop-up message appear -- easy to reuse!
     {
         Label popupLabel = new Label(message);
         popupLabel.setStyle("-fx-background-color: #3a3a3c; -fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;-fx-padding: 20px;"); 
@@ -192,6 +197,8 @@ public class WordleUI extends Application {
         popup.show();
 
         //make the popup automatically close after 1.5 seconds
+
+        // Used AI to learn how to set a timer and an event that takes place at the timer's end.
         PauseTransition timer = new PauseTransition(Duration.seconds(1.5));
         timer.setOnFinished(event -> popup.close());
         timer.play();
