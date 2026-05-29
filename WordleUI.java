@@ -48,13 +48,13 @@ public class WordleUI extends Application {
                 tile.setAlignment(Pos.CENTER); 
                 tile.setPrefSize(60, 60);
                 tile.setStyle("-fx-border-color: #3a3a3c; -fx-border-width: 2px; -fx-font-size: 24px; -fx-text-fill: white; -fx-font-weight: bold;");
-`                // adds to the array of tiles to be used later
+                // adds to the array of tiles to be used later
                 boardTiles[row][col] = tile; // Save to array
                 grid.add(tile, col, row);
             }
         }
 
-        Button enterBtn = new Button("ENTER");
+        Button enterBtn = new Button("ENTER"); //creation of the ENTER button
         enterBtn.setPrefSize(100, 50);
         enterBtn.setStyle("-fx-background-color: #818384; -fx-text-fill: white; -fx-font-weight: bold;");
 
