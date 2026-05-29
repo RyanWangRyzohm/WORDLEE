@@ -34,19 +34,20 @@ public class WordleUI extends Application {
         Label title = new Label("WORDY"); // set the title of the program
         title.setFont(Font.font("System", 30)); // set the title font to System size 30
         title.setStyle("-fx-text-fill: white; -fx-font-weight: bold;"); // set the title style to white and bold
-
+        // creates and formats the grid
         GridPane grid = new GridPane(); // creates new grid object
         grid.setAlignment(Pos.CENTER); // centers the grid object
         grid.setHgap(8); // sets the horizontal gap/interval to 8
         grid.setVgap(8); // sets the vertical gap/interval to 8
-
+        // creates all the tiles using a 2d array style nested for loop
         for (int row = 0; row < 6; row++) {
             for (int col = 0; col < 5; col++) {
                 Label tile = new Label();
-                tile.setAlignment(Pos.CENTER);
+                // individual tile formatting
+                tile.setAlignment(Pos.CENTER); 
                 tile.setPrefSize(60, 60);
                 tile.setStyle("-fx-border-color: #3a3a3c; -fx-border-width: 2px; -fx-font-size: 24px; -fx-text-fill: white; -fx-font-weight: bold;");
-
+`                // adds to the array of tiles to be used later
                 boardTiles[row][col] = tile; // Save to array
                 grid.add(tile, col, row);
             }
@@ -60,7 +61,7 @@ public class WordleUI extends Application {
 
         Scene scene = new Scene(root, 450, 650);
 
-        // --- KEYBOARD LISTENER ---
+        // typer and remover
         scene.setOnKeyPressed(event -> {
             if (currentRow >= 6)
             {
@@ -69,17 +70,18 @@ public class WordleUI extends Application {
             
             KeyCode code = event.getCode();
 
-            // Handle Backspace
+            // Handle Backspace/removal of letters
             if (code == KeyCode.BACK_SPACE && currentCol > 0) {
                 currentCol--;
                 boardTiles[currentRow][currentCol].setText("");
             }
-            // Handle Letters (A-Z) and ensure we don't go out of bounds
+            // Handle Letters (A-Z) and ensure the code don't go out of bounds
             else if (code.isLetterKey() && currentCol < 5 && currentRow < 6) {
                 String letter = code.toString(); // code.toString() always returns the uppercase letter
                 boardTiles[currentRow][currentCol].setText(letter);
                 currentCol++;
             }
+            // the enter button detector
             else if (code == KeyCode.ENTER)
             {
                 if (currentCol < 5)
@@ -92,6 +94,7 @@ public class WordleUI extends Application {
                 }
             }
         });
+        // the enter button/lock answer button action
         enterBtn.setOnAction(event -> {
             // Call method to check the guess here
             if (currentCol < 5) {
@@ -123,14 +126,14 @@ public class WordleUI extends Application {
         for (int i = 0; i < 5; i++) {
             Label tile = guessor[row][i];
 
-            // 1. Exact Match (Green)
+            // Find exact matches (green)
             if (guess[i].equals(String.valueOf(target.charAt(i)))) {
                 tile.setStyle("-fx-background-color: #538d4e; -fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;");
                 greens++;
                 matched[i] = true;
             }
         }
-        // Find yellows and greys
+        // Find letters in wrong spot (yellow) and letters not contained (gray)
         for (int i = 0; i < 5; i++)
             {
                 Label tile = guessor[row][i];
@@ -166,7 +169,7 @@ public class WordleUI extends Application {
 
         
         if(greens==5){
-            showPopup("God Joob");
+            showPopup("Good Job");
         }
 
         // Move to the next row and reset column for the next guess
